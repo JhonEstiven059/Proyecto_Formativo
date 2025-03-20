@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CrudDF3/appsettings.json
+/CrudDF3/Models/CrudDf3Context.cs
