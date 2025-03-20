@@ -6,6 +6,7 @@ namespace CrudDF3.Models;
 public partial class Habitacione
 {
     //hola darwor
+    //dssdsdsd
     public int IdHabitacion { get; set; }
 
     public string? TipoHabitacion { get; set; }
