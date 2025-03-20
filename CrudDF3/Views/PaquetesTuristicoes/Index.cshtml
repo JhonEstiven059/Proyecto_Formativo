@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CrudDF3.Models.PaquetesTuristico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombrePaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescripcionPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisponibilidadPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinoPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPaquete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoViajePaquete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisponibilidadPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestinoPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPaquete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoViajePaquete)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPaquete">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPaquete">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPaquete">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
