@@ -27,20 +27,25 @@
                 <input asp-for="PrecioPaquete" class="form-control" />
                 <span asp-validation-for="PrecioPaquete" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="DisponibilidadPaquete" /> @Html.DisplayNameFor(model => model.DisponibilidadPaquete)
-                </label>
+            <div class="form-group">
+                <label asp-for="DisponibilidadPaquete" class="control-label"></label>
+                <input asp-for="DisponibilidadPaquete" class="form-control" />
+                <span asp-validation-for="DisponibilidadPaquete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPaquete" class="control-label"></label>
+                <input asp-for="FechaPaquete" class="form-control" />
+                <span asp-validation-for="FechaPaquete" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DestinoPaquete" class="control-label"></label>
                 <input asp-for="DestinoPaquete" class="form-control" />
                 <span asp-validation-for="DestinoPaquete" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="EstadoPaquete" /> @Html.DisplayNameFor(model => model.EstadoPaquete)
-                </label>
+            <div class="form-group">
+                <label asp-for="EstadoPaquete" class="control-label"></label>
+                <input asp-for="EstadoPaquete" class="form-control" />
+                <span asp-validation-for="EstadoPaquete" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TipoViajePaquete" class="control-label"></label>

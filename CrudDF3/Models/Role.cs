@@ -7,11 +7,11 @@ public partial class Role
 {
     public int IdRol { get; set; }
 
-    public string NombreRol { get; set; } = null!;
+    public string? NombreRol { get; set; }
 
     public string? DescripcionRol { get; set; }
 
-    public bool EstadoRol { get; set; }
+    public bool? EstadoRol { get; set; }
 
     public virtual ICollection<RolPermiso> RolPermisos { get; set; } = new List<RolPermiso>();
 

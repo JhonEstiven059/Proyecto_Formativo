@@ -21,7 +21,7 @@ namespace CrudDF3.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var crudDf3Context = _context.Usuarios.Include(u => u.IdRolUsuariosNavigation);
+            var crudDf3Context = _context.Usuarios.Include(u => u.IdRolNavigation);
             return View(await crudDf3Context.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace CrudDF3.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .Include(u => u.IdRolUsuariosNavigation)
+                .Include(u => u.IdRolNavigation)
                 .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {
@@ -47,7 +47,7 @@ namespace CrudDF3.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
-            ViewData["IdRolUsuarios"] = new SelectList(_context.Roles, "IdRol", "IdRol");
+            ViewData["IdRol"] = new SelectList(_context.Roles, "IdRol", "IdRol");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace CrudDF3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdUsuario,CedulaUsuario,NombreUsuario,ApellidoUsuario,CorreoUsuario,ContraseñaUsuario,EstadoUsuario,FechaCreacion,Direccion,Telefono,IdRolUsuarios")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("IdUsuario,CedulaUsuario,NombreUsuario,ApellidoUsuario,CorreoUsuario,ContraseñaUsuario,EstadoUsuario,FechaCreacion,Direccion,Telefono,IdRol")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace CrudDF3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRolUsuarios"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRolUsuarios);
+            ViewData["IdRol"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRol);
             return View(usuario);
         }
 
@@ -81,7 +81,7 @@ namespace CrudDF3.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdRolUsuarios"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRolUsuarios);
+            ViewData["IdRol"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRol);
             return View(usuario);
         }
 
@@ -90,7 +90,7 @@ namespace CrudDF3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,CedulaUsuario,NombreUsuario,ApellidoUsuario,CorreoUsuario,ContraseñaUsuario,EstadoUsuario,FechaCreacion,Direccion,Telefono,IdRolUsuarios")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,CedulaUsuario,NombreUsuario,ApellidoUsuario,CorreoUsuario,ContraseñaUsuario,EstadoUsuario,FechaCreacion,Direccion,Telefono,IdRol")] Usuario usuario)
         {
             if (id != usuario.IdUsuario)
             {
@@ -117,7 +117,7 @@ namespace CrudDF3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdRolUsuarios"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRolUsuarios);
+            ViewData["IdRol"] = new SelectList(_context.Roles, "IdRol", "IdRol", usuario.IdRol);
             return View(usuario);
         }
 
@@ -130,7 +130,7 @@ namespace CrudDF3.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .Include(u => u.IdRolUsuariosNavigation)
+                .Include(u => u.IdRolNavigation)
                 .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {

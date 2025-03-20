@@ -40,7 +40,7 @@
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdRolUsuariosNavigation)
+                @Html.DisplayNameFor(model => model.IdRolNavigation)
             </th>
             <th></th>
         </tr>
@@ -76,7 +76,7 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdRolUsuariosNavigation.IdRol)
+                @Html.DisplayFor(modelItem => item.IdRolNavigation.IdRol)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdUsuario">Edit</a> |
