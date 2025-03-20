@@ -19,7 +19,5 @@ public partial class Habitacione
 
     public string? CaracteristicasHabitacion { get; set; }
 
-    public virtual ICollection<HabitacionesServicio> HabitacionesServicios { get; set; } = new List<HabitacionesServicio>();
-
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }

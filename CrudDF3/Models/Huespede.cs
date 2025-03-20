@@ -19,7 +19,5 @@ public partial class Huespede
 
     public DateOnly? FechaSalidaHuesped { get; set; }
 
-    public virtual ICollection<HuespedesPaquete> HuespedesPaquetes { get; set; } = new List<HuespedesPaquete>();
-
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }

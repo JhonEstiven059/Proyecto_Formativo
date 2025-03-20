@@ -23,7 +23,5 @@ public partial class PaquetesTuristico
 
     public string? TipoViajePaquete { get; set; }
 
-    public virtual ICollection<HuespedesPaquete> HuespedesPaquetes { get; set; } = new List<HuespedesPaquete>();
-
     public virtual ICollection<ReservasPaquete> ReservasPaquetes { get; set; } = new List<ReservasPaquete>();
 }

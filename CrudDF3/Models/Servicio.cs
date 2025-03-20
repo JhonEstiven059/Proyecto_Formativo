@@ -23,7 +23,5 @@ public partial class Servicio
 
     public string? TipoServicio { get; set; }
 
-    public virtual ICollection<HabitacionesServicio> HabitacionesServicios { get; set; } = new List<HabitacionesServicio>();
-
     public virtual ICollection<ReservasServicio> ReservasServicios { get; set; } = new List<ReservasServicio>();
 }

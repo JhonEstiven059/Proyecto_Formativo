@@ -17,11 +17,7 @@ public partial class CrudDf3Context : DbContext
 
     public virtual DbSet<Habitacione> Habitaciones { get; set; }
 
-    public virtual DbSet<HabitacionesServicio> HabitacionesServicios { get; set; }
-
     public virtual DbSet<Huespede> Huespedes { get; set; }
-
-    public virtual DbSet<HuespedesPaquete> HuespedesPaquetes { get; set; }
 
     public virtual DbSet<PaquetesTuristico> PaquetesTuristicos { get; set; }
 
@@ -63,21 +59,6 @@ public partial class CrudDf3Context : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<HabitacionesServicio>(entity =>
-        {
-            entity.HasKey(e => e.IdHabitacionServicio).HasName("PK__Habitaci__826CEF4C0087CB93");
-
-            entity.HasOne(d => d.IdHabitacionNavigation).WithMany(p => p.HabitacionesServicios)
-                .HasForeignKey(d => d.IdHabitacion)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Habitacio__IdHab__6B24EA82");
-
-            entity.HasOne(d => d.IdServicioNavigation).WithMany(p => p.HabitacionesServicios)
-                .HasForeignKey(d => d.IdServicio)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Habitacio__IdSer__6C190EBB");
-        });
-
         modelBuilder.Entity<Huespede>(entity =>
         {
             entity.HasKey(e => e.IdHuesped).HasName("PK__Huespede__939EC061ADE6E85D");
@@ -95,21 +76,6 @@ public partial class CrudDf3Context : DbContext
             entity.Property(e => e.NombreHuesped)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-        });
-
-        modelBuilder.Entity<HuespedesPaquete>(entity =>
-        {
-            entity.HasKey(e => e.IdHuespedPaquete).HasName("PK__Huespede__94D79D332AC70ECF");
-
-            entity.HasOne(d => d.IdHuespedNavigation).WithMany(p => p.HuespedesPaquetes)
-                .HasForeignKey(d => d.IdHuesped)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Huespedes__IdHue__6EF57B66");
-
-            entity.HasOne(d => d.IdPaqueteNavigation).WithMany(p => p.HuespedesPaquetes)
-                .HasForeignKey(d => d.IdPaquete)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Huespedes__IdPaq__6FE99F9F");
         });
 
         modelBuilder.Entity<PaquetesTuristico>(entity =>
