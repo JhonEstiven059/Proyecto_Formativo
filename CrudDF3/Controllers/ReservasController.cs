@@ -60,7 +60,7 @@ namespace CrudDF3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdReserva,CodigoReserva,IdUsuario,IdHuesped,IdHabitacion,FechaInicial,FechaFinal,NumeroPersonas,Valor,Anticipo,FechaReserva,EstadoReserva")] Reserva reserva)
+        public async Task<IActionResult> Create([Bind("IdReserva,IdUsuario,IdHuesped,IdHabitacion,FechaInicial,FechaFinal,NumeroPersonas,Valor,Anticipo,FechaReserva,EstadoReserva")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace CrudDF3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,CodigoReserva,IdUsuario,IdHuesped,IdHabitacion,FechaInicial,FechaFinal,NumeroPersonas,Valor,Anticipo,FechaReserva,EstadoReserva")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, [Bind("IdReserva,IdUsuario,IdHuesped,IdHabitacion,FechaInicial,FechaFinal,NumeroPersonas,Valor,Anticipo,FechaReserva,EstadoReserva")] Reserva reserva)
         {
             if (id != reserva.IdReserva)
             {

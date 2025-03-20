@@ -22,10 +22,10 @@
                 <input asp-for="CapacidadHuespedes" class="form-control" />
                 <span asp-validation-for="CapacidadHuespedes" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="EstadoHabitacion" /> @Html.DisplayNameFor(model => model.EstadoHabitacion)
-                </label>
+            <div class="form-group">
+                <label asp-for="EstadoHabitacion" class="control-label"></label>
+                <input asp-for="EstadoHabitacion" class="form-control" />
+                <span asp-validation-for="EstadoHabitacion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DescripcionHabitacion" class="control-label"></label>

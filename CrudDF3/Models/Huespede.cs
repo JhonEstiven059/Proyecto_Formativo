@@ -7,17 +7,17 @@ public partial class Huespede
 {
     public int IdHuesped { get; set; }
 
-    public int CedulaHuesped { get; set; }
+    public int? CedulaHuesped { get; set; }
 
-    public string NombreHuesped { get; set; } = null!;
+    public string? NombreHuesped { get; set; }
 
-    public string ApellidoHuesped { get; set; } = null!;
+    public string? ApellidoHuesped { get; set; }
 
-    public string CorreoHuesped { get; set; } = null!;
+    public string? CorreoHuesped { get; set; }
 
-    public DateOnly? FechaEntradaHuesped { get; set; }
+    public DateTime? FechaEntradaHuesped { get; set; }
 
-    public DateOnly? FechaSalidaHuesped { get; set; }
+    public DateTime? FechaSalidaHuesped { get; set; }
 
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }
