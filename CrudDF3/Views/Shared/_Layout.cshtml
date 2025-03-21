@@ -49,6 +49,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                         </li>
+
+                        @Html.ActionLink("Cerrar Sesión", "Logout", "Account", null, new { @class = "btn btn-danger" })
+
                     </ul>
                 </div>
             </div>

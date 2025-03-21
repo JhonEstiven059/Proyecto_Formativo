@@ -9,6 +9,17 @@ builder.Services.AddDbContext<CrudDf3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
 
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CrudDf3Context>(); // ASEGÚRATE DE QUE YA ESTÉ CONFIGURADO
+builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20); // TIEMPO DE EXPIRACIÓN
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 
 var app = builder.Build();
 
