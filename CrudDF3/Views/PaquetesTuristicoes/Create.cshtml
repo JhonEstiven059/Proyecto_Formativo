@@ -33,6 +33,11 @@
                 </label>
             </div>
             <div class="form-group">
+                <label asp-for="FechaPaquete" class="control-label"></label>
+                <input asp-for="FechaPaquete" class="form-control" />
+                <span asp-validation-for="FechaPaquete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DestinoPaquete" class="control-label"></label>
                 <input asp-for="DestinoPaquete" class="form-control" />
                 <span asp-validation-for="DestinoPaquete" class="text-danger"></span>
