@@ -17,7 +17,7 @@ public partial class Usuario
 
     public string? ContraseñaUsuario { get; set; }
 
-    public bool? EstadoUsuario { get; set; }
+    public bool EstadoUsuario { get; set; }
 
     public DateTime? FechaCreacion { get; set; }
 
