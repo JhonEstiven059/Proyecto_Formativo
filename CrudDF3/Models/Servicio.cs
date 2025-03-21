@@ -15,11 +15,11 @@ public partial class Servicio
 
     public decimal? Costo { get; set; }
 
-    public bool? Disponibilidad { get; set; }
+    public bool Disponibilidad { get; set; }
 
     public string? Observacion { get; set; }
 
-    public bool? EstadoServicio { get; set; }
+    public bool EstadoServicio { get; set; }
 
     public string? TipoServicio { get; set; }
 

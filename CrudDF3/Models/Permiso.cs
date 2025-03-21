@@ -11,7 +11,7 @@ public partial class Permiso
 
     public string? DescripcionPermiso { get; set; }
 
-    public bool? EstadoPermiso { get; set; }
+    public bool EstadoPermiso { get; set; }
 
     public virtual ICollection<RolPermiso> RolPermisos { get; set; } = new List<RolPermiso>();
 }

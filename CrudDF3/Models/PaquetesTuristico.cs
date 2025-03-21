@@ -13,13 +13,13 @@ public partial class PaquetesTuristico
 
     public decimal? PrecioPaquete { get; set; }
 
-    public bool? DisponibilidadPaquete { get; set; }
+    public bool DisponibilidadPaquete { get; set; }
 
     public DateTime? FechaPaquete { get; set; }
 
     public string? DestinoPaquete { get; set; }
 
-    public bool? EstadoPaquete { get; set; }
+    public bool EstadoPaquete { get; set; }
 
     public string? TipoViajePaquete { get; set; }
 

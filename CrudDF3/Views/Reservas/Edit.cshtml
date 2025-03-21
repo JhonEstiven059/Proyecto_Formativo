@@ -58,10 +58,10 @@
                 <input asp-for="FechaReserva" class="form-control" />
                 <span asp-validation-for="FechaReserva" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EstadoReserva" class="control-label"></label>
-                <input asp-for="EstadoReserva" class="form-control" />
-                <span asp-validation-for="EstadoReserva" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EstadoReserva" /> @Html.DisplayNameFor(model => model.EstadoReserva)
+                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -25,7 +25,7 @@ public partial class Reserva
 
     public DateTime? FechaReserva { get; set; }
 
-    public bool? EstadoReserva { get; set; }
+    public bool EstadoReserva { get; set; }
 
     public virtual Habitacione? IdHabitacionNavigation { get; set; }
 
