@@ -1,8 +1,8 @@
 ﻿using CrudDF3.Models;
 using CrudDF3.Models.ViewModels;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace CrudDF3.Controllers
 {
@@ -15,7 +15,7 @@ namespace CrudDF3.Controllers
             _context = context;
         }
 
-        // MÉTODO PARA MOSTRAR LA VISTA DE LOGIN
+        // MÉTODO PARA MOSTRAR EL FORMULARIO DE LOGIN
         public IActionResult Login()
         {
             return View();
@@ -33,8 +33,9 @@ namespace CrudDF3.Controllers
                 if (user != null)
                 {
                     // GUARDAR DATOS EN LA SESIÓN
-                    HttpContext.Session.SetString("IdUsuario", user.IdUsuario.ToString());
-                    HttpContext.Session.SetString("NombreUsuario", user.NombreUsuario);
+                    HttpContext.Session.SetString("idUsuario", user.IdUsuario.ToString());
+                    HttpContext.Session.SetString("nombreUsuario", user.NombreUsuario);
+                    HttpContext.Session.SetString("idRol", user.IdRol.ToString());
 
                     return RedirectToAction("Index", "Home"); // REDIRIGIR A LA PÁGINA PRINCIPAL
                 }
@@ -47,14 +48,18 @@ namespace CrudDF3.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Logout()
+        // MÉTODO PARA REGISTRO, REUTILIZANDO "Create" DE UsuarioController
+        public IActionResult Registrar()
+        {
+            return RedirectToAction("Create", "Usuario", new { idRol = 2 }); // REGISTRAR COMO CLIENTE
+        }
+
+        // MÉTODO PARA CERRAR SESIÓN
+        public IActionResult Logout()
         {
             // LIMPIAR LA SESIÓN
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("IdUsuario");
-
-            // ELIMINAR AUTENTICACIÓN
-            await HttpContext.SignOutAsync();
 
             // REDIRIGIR AL LOGIN
             return RedirectToAction("Login", "Account");
