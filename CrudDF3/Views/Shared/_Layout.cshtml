@@ -10,53 +10,53 @@
     <link rel="stylesheet" href="~/CrudBS.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="Layout">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
+                <!-- Logo -->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CrudBS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <!-- Botón para móviles -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- Contenido del Navbar -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Habitaciones" asp-action="Index">Habitaciones</a>
                         </li>
-                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Huespedes" asp-action="Index">Huespedes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turistico</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Permisoes" asp-action="Index">Permisos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turístico</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Servicios" asp-action="Index">Servicios</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                        </li>
+                    </ul>
+                    </ul>
 
+                    <!-- Login alineado a la derecha -->
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                         </li>
-
-                        @Html.ActionLink("Cerrar Sesión", "Logout", "Account", null, new { @class = "btn btn-danger" })
-
+                        <li class="nav-item">
+                            <a class="btn btn-danger" asp-area="" asp-controller="Account" asp-action="Logout">Cerrar Sesión</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -68,6 +68,7 @@
             &copy; 2025 - CrudBS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
