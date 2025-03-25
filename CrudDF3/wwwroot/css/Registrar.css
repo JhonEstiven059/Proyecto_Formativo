@@ -1,0 +1,27 @@
+﻿button:hover {
+    background-color: #4a8ec2;
+}
+
+a {
+    text-decoration: none;
+    color: #5b9bd5;
+    font-size: 14px;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+    p.error {
+        color: #f44336;
+    }
+
+    p.success {
+        color: #4CAF50;
+    }
