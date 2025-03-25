@@ -3,6 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddHttpContextAccessor();
+
+
+builder.Services.AddControllersWithViews();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CrudDf3Context>(options =>

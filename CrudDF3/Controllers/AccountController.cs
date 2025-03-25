@@ -13,6 +13,7 @@ namespace CrudDF3.Controllers
         public AccountController(CrudDf3Context context)
         {
             _context = context;
+
         }
 
         // MÉTODO PARA MOSTRAR EL FORMULARIO DE LOGIN
@@ -36,7 +37,7 @@ namespace CrudDF3.Controllers
                     HttpContext.Session.SetString("idUsuario", user.IdUsuario.ToString());
                     HttpContext.Session.SetString("nombreUsuario", user.NombreUsuario);
                     HttpContext.Session.SetString("idRol", user.IdRol.ToString());
-
+                    
                     return RedirectToAction("Index", "Home"); // REDIRIGIR A LA PÁGINA PRINCIPAL
                 }
                 else
@@ -60,9 +61,6 @@ namespace CrudDF3.Controllers
             // LIMPIAR LA SESIÓN
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("IdUsuario");
-
-            // ELIMINAR AUTENTICACIÓN
-            HttpContext.SignOutAsync();
 
             // REDIRIGIR AL LOGIN
             return RedirectToAction("Login", "Account");
