@@ -61,6 +61,9 @@ namespace CrudDF3.Controllers
             HttpContext.Session.Clear();
             HttpContext.Session.Remove("IdUsuario");
 
+            // ELIMINAR AUTENTICACIÓN
+            HttpContext.SignOutAsync();
+
             // REDIRIGIR AL LOGIN
             return RedirectToAction("Login", "Account");
         }

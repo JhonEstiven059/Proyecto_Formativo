@@ -15,7 +15,7 @@ builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(20); // TIEMPO DE EXPIRACIÓN
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // TIEMPO DE EXPIRACIÓN
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -33,6 +33,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
 app.UseSession();
 app.UseAuthorization();
 
