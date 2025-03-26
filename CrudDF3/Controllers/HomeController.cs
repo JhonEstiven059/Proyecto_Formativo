@@ -1,9 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using CrudDF3.Models;
 
-public class HomeController : Controller
+namespace CrudDF3.Controllers
 {
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-        return View(); // MUESTRA EL HOME SIEMPRE
+        private readonly CrudDf3Context _context;
+
+        public HomeController(CrudDf3Context context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var habitaciones = await _context.Habitaciones.ToListAsync();
+            return View(habitaciones); // Pasamos las habitaciones a la vista
+        }
     }
 }
