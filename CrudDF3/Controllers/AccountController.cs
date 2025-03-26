@@ -3,6 +3,9 @@ using CrudDF3.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 
 namespace CrudDF3.Controllers
 {
@@ -44,16 +47,55 @@ namespace CrudDF3.Controllers
                 {
                     ViewBag.ErrorMessage = "Usuario o contraseña incorrectos";
                 }
+
+            }
+
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult Registrar()
+        {
+            return View();
+        }
+        // MÉTODO PARA REGISTRO, REUTILIZANDO "Create" DE UsuarioController
+        [HttpPost]
+        public async Task<IActionResult> Registrar(RegistrarViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // VALIDAR QUE EL CORREO NO EXISTA YA EN LA BASE DE DATOS
+                var usuarioExistente = await _context.Usuarios.FirstOrDefaultAsync(u => u.CorreoUsuario == model.CorreoUsuario);
+                if (usuarioExistente != null)
+                {
+                    ModelState.AddModelError("", "Este correo ya está registrado.");
+                    return View(model);
+                }
+
+                // CREAR NUEVO USUARIO CON LOS DATOS DEL FORMULARIO
+                var usuario = new Usuario
+                {
+                    CedulaUsuario = model.CedulaUsuario,
+                    NombreUsuario = model.NombreUsuario,
+                    ApellidoUsuario = model.ApellidoUsuario,
+                    CorreoUsuario = model.CorreoUsuario,
+                    Telefono = model.Telefono,
+                    Direccion = model.Direccion,
+                    ContraseñaUsuario = model.ContraseñaUsuario, // SE RECOMIENDA HASHEAR LA CONTRASEÑA
+                    IdRol = 2, // CLIENTE
+                    EstadoUsuario = true,
+                    FechaCreacion = DateTime.Now
+                };
+
+                _context.Usuarios.Add(usuario);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Login"); // REDIRIGE AL LOGIN TRAS REGISTRARSE
             }
 
             return View(model);
         }
 
-        // MÉTODO PARA REGISTRO, REUTILIZANDO "Create" DE UsuarioController
-        public IActionResult Registrar()
-        {
-            return RedirectToAction("Create", "Usuario", new { idRol = 2 }); // REGISTRAR COMO CLIENTE
-        }
+
 
         // MÉTODO PARA CERRAR SESIÓN
         public IActionResult Logout()
@@ -65,5 +107,7 @@ namespace CrudDF3.Controllers
             // REDIRIGIR AL LOGIN
             return RedirectToAction("Login", "Account");
         }
+
+
     }
 }

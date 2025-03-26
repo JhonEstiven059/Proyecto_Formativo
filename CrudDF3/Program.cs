@@ -1,54 +1,46 @@
+using Microsoft.AspNetCore.Http;
 using CrudDF3.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddHttpContextAccessor();
-
+// Agregar servicios necesarios
+builder.Services.AddHttpContextAccessor(); // Esta lÃ­nea proviene de la rama-darwor
 
 builder.Services.AddControllersWithViews();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CrudDf3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
 
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<CrudDf3Context>(); // ASEGÚRATE DE QUE YA ESTÉ CONFIGURADO
-builder.Services.AddSession();
-builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // TIEMPO DE EXPIRACIÓN
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // TIEMPO DE EXPIRACIÃ“N
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // PARA ACCEDER A LA SESIÃ“N
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
-app.UseSession();
-app.UseAuthorization();
+app.UseSession(); // IMPORTANTE PARA USAR SESIONES
 
-app.MapStaticAssets();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
