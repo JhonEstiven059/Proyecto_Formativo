@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
 
 namespace CrudDF3.Controllers
 {
@@ -104,5 +106,7 @@ namespace CrudDF3.Controllers
             // REDIRIGIR AL LOGIN
             return RedirectToAction("Login", "Account");
         }
+
+
     }
 }
