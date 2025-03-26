@@ -1,36 +1,43 @@
 ﻿@model CrudDF3.Models.Role
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Rol";
 }
 
-<h1>Details</h1>
+<h1>Detalles del Rol</h1>
 
-<div>
-    <h4>Role</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreRol)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreRol)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DescripcionRol)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DescripcionRol)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstadoRol)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EstadoRol)
-        </dd>
-    </dl>
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white">
+        <strong>Información del Rol</strong>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <!-- NOMBRE DEL ROL -->
+            <dt class="col-sm-3"><strong>Nombre del Rol:</strong></dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NombreRol)</dd>
+
+            <!-- DESCRIPCIÓN DEL ROL -->
+            <dt class="col-sm-3"><strong>Descripción:</strong></dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.DescripcionRol)</dd>
+
+            <!-- ESTADO DEL ROL -->
+            <dt class="col-sm-3"><strong>Estado:</strong></dt>
+            <dd class="col-sm-9">
+                @if (Model.EstadoRol)
+                {
+                    <span class="badge bg-success">Activo</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Inactivo</span>
+                }
+            </dd>
+        </dl>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdRol">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<!-- BOTONES -->
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.IdRol" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
 </div>
