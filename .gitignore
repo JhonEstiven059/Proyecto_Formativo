@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /CrudDF3/appsettings.json
 /CrudDF3/Models/CrudDf3Context.cs
+/CrudDF3/Migrations/20250321203905_Segundocambio.cs
+/CrudDF3/Migrations/CrudDf3ContextModelSnapshot.cs

@@ -1,7 +1,12 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+﻿@{
+    // Accede al valor de idRol desde la sesión
+    var idRol = Context.Session.GetString("idRol");
+}
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +14,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+
 <body>
 
     <header class="Layout">
@@ -24,24 +30,41 @@
                     {
                         <!-- MENÚ CUANDO EL USUARIO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Habitaciones" asp-action="Index">Habitaciones</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Huespedes" asp-action="Index">Huespedes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turístico</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Reservas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
-                            </li>
+                            @if (idRol != null && idRol == "1") // Comprobamos si idRol es "1"
+                            {
+                                <!-- Menús visibles solo si el rol es "1" -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Habitaciones" asp-action="Index">Habitaciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Huespedes" asp-action="Index">Huespedes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turístico</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Reservas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Servicios" asp-action="Index">Servicios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Permisoes" asp-action="Index">Permisos</a>
+                                </li>
+                            }
+                            else if (idRol != null && idRol == "2") // Si el idRol es "2" (por ejemplo, rol de cliente)
+                            {
+                                <!-- Menú específico para el rol "2" -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
+                                </li>
+                            }
                         </ul>
 
                         <!-- BOTÓN DE CERRAR SESIÓN -->
@@ -87,3 +110,4 @@
 
 </body>
 </html>
+
