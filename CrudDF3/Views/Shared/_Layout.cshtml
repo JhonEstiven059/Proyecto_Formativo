@@ -1,97 +1,24 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+﻿@{
+    // Accede al valor de idRol desde la sesión
+    var nombreRol = Context.Session.GetString("nombreRol");
+}
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CrudDF</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-    <!-- 🚀 ANIMACIONES & EFECTOS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-    <style>
-        /* 🌟 ANIMACIONES PARA UNA EXPERIENCIA VISUAL IMPRESIONANTE */
-
-        /* 💎 NAVBAR EFECTO GLASS + HOVER GLOW */
-        .navbar {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease-in-out;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            transition: transform 0.3s ease-in-out;
-        }
-
-            .navbar-brand:hover {
-                transform: scale(1.1);
-                color: #3498db !important;
-            }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.2s ease-in-out;
-        }
-
-            .nav-link:hover {
-                color: #e74c3c !important;
-                transform: translateY(-3px);
-            }
-
-        /* ✨ EFECTO EN BOTONES */
-        .btn-custom {
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            transition: all 0.4s ease-in-out;
-        }
-
-            .btn-custom:hover {
-                transform: scale(1.1);
-                box-shadow: 0 0 15px rgba(255, 75, 43, 0.6);
-            }
-
-        /* 🎭 EFECTO DE APARICIÓN AL HACER SCROLL */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-in-out;
-        }
-
-            .fade-in.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        /* 🏆 FOOTER ELEGANTE */
-        .footer {
-            padding: 20px;
-            background: #222;
-            color: #bbb;
-            text-align: center;
-            transition: all 0.4s;
-        }
-
-            .footer a {
-                color: #3498db;
-                text-decoration: none;
-                transition: color 0.3s ease-in-out;
-            }
-
-                .footer a:hover {
-                    color: #e74c3c;
-                }
-
-    </style>
 </head>
-<body onload="initializeAnimations()">
+
+<body>
 
     <header class="Layout">
-        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3" data-aos="fade-down">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">CrudDF</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,43 +26,63 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    @if (HttpContextAccessor.HttpContext.Session.GetString("idUsuario") != null)
+                    @if (Context.Session.GetString("idUsuario") != null)
                     {
+                        <!-- MENÚ CUANDO EL USUARIO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="100">
-                                <a class="nav-link text-dark" asp-controller="Habitaciones" asp-action="Index">Habitaciones</a>
-                            </li>
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="200">
-                                <a class="nav-link text-dark" asp-controller="Huespedes" asp-action="Index">Huespedes</a>
-                            </li>
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="300">
-                                <a class="nav-link text-dark" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turístico</a>
-                            </li>
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="400">
-                                <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Reservas</a>
-                            </li>
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="500">
-                                <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                            </li>
-                            <li class="nav-item" data-aos="fade-up" data-aos-delay="600">
-                                <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
-                            </li>
+                            @if (nombreRol != null && nombreRol == "Administrador") // Comprobamos si idRol es "1"
+                            {
+                                <!-- Menús visibles solo si el rol es "1" -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Habitaciones" asp-action="Index">Habitaciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Huespedes" asp-action="Index">Huespedes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="PaquetesTuristicoes" asp-action="Index">Paquete Turístico</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Reservas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Roles" asp-action="Index">Roles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Servicios" asp-action="Index">Servicios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Permisoes" asp-action="Index">Permisos</a>
+                                </li>
+                            }
+                            else if (nombreRol != null && nombreRol == "Cliente") // Si el idRol es "2" (por ejemplo, rol de cliente)
+                            {
+                                <!-- Menú específico para el rol "2" -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
+                                </li>
+                            }
                         </ul>
 
+                        <!-- BOTÓN DE CERRAR SESIÓN -->
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" data-aos="zoom-in">
-                                <a class="nav-link text-dark btn-custom" asp-controller="Account" asp-action="Logout">Cerrar Sesión</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Cerrar Sesión</a>
                             </li>
                         </ul>
                     }
                     else
                     {
+                        <!-- MENÚ CUANDO EL USUARIO NO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" data-aos="zoom-in" data-aos-delay="700">
-                                <a class="nav-link text-dark btn-custom" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
                             </li>
-                            <li class="nav-item" data-aos="zoom-in" data-aos-delay="800">
-                                <a class="nav-link text-dark btn-custom" asp-controller="Account" asp-action="Registrar">Registrarse</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Registrar">Registrarse</a>
                             </li>
                         </ul>
                     }
@@ -144,13 +91,13 @@
         </nav>
     </header>
 
-    <div class="container fade-in">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="footer fade-in" data-aos="fade-up">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - CrudDF - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
@@ -160,19 +107,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
-    <!-- ACTIVAR AOS ANIMACIONES -->
-    <script>
-        AOS.init();
-
-        function initializeAnimations() {
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }, 300);
-        }
-    </script>
 
 </body>
 </html>

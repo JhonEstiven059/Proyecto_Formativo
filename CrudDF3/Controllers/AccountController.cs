@@ -31,7 +31,9 @@ namespace CrudDF3.Controllers
             if (ModelState.IsValid)
             {
                 var user = _context.Usuarios
-                    .FirstOrDefault(u => u.CorreoUsuario == model.CorreoUsuario && u.ContraseñaUsuario == model.ContraseñaUsuario);
+                    .Include(u => u.IdRolNavigation) // INCLUYE LA RELACIÓN CON LA TABLA ROLES
+                    .FirstOrDefault(u => u.CorreoUsuario == model.CorreoUsuario
+                                      && u.ContraseñaUsuario == model.ContraseñaUsuario);
 
                 if (user != null)
                 {
@@ -39,6 +41,7 @@ namespace CrudDF3.Controllers
                     HttpContext.Session.SetString("idUsuario", user.IdUsuario.ToString());
                     HttpContext.Session.SetString("nombreUsuario", user.NombreUsuario);
                     HttpContext.Session.SetString("idRol", user.IdRol.ToString());
+                    HttpContext.Session.SetString("nombreRol", user.IdRolNavigation.NombreRol); // OBTIENE EL NOMBRE DEL ROL
 
                     return RedirectToAction("Index", "Home"); // REDIRIGIR A LA PÁGINA PRINCIPAL
                 }
@@ -46,11 +49,11 @@ namespace CrudDF3.Controllers
                 {
                     ViewBag.ErrorMessage = "Usuario o contraseña incorrectos";
                 }
-
             }
 
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Registrar()
         {
