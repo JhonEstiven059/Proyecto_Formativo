@@ -1,43 +1,53 @@
 ﻿@model CrudDF3.Models.Role
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Rol";
 }
 
-<h1>Create</h1>
+<h1>Crear Rol</h1>
 
-<h4>Role</h4>
+<h4>Ingrese los datos del nuevo rol</h4>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- NOMBRE DEL ROL -->
             <div class="form-group">
                 <label asp-for="NombreRol" class="control-label"></label>
-                <input asp-for="NombreRol" class="form-control" />
+                <input asp-for="NombreRol" class="form-control" placeholder="Ingrese el nombre del rol" />
                 <span asp-validation-for="NombreRol" class="text-danger"></span>
             </div>
+
+            <!-- DESCRIPCIÓN DEL ROL -->
             <div class="form-group">
                 <label asp-for="DescripcionRol" class="control-label"></label>
-                <input asp-for="DescripcionRol" class="form-control" />
+                <input asp-for="DescripcionRol" class="form-control" placeholder="Ingrese una breve descripción" />
                 <span asp-validation-for="DescripcionRol" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="EstadoRol" /> @Html.DisplayNameFor(model => model.EstadoRol)
-                </label>
-            </div>
+
+            <!-- ESTADO DEL ROL -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="EstadoRol" />
+                    <label class="form-check-label" asp-for="EstadoRol"></label>
+                </div>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+<!-- VALIDACIONES -->
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
