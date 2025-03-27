@@ -164,6 +164,37 @@ namespace CrudDF3.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var role = await _context.Roles
+                .Include(r => r.RolPermisos)
+                .ThenInclude(rp => rp.IdPermisoNavigation)
+                .FirstOrDefaultAsync(r => r.IdRol == id);
+
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            // Obtener la lista de permisos disponibles
+            var allPermissions = await _context.Permisos.ToListAsync();
+
+            // Obtener los permisos ya asignados a este rol
+            var selectedPermissions = role.RolPermisos.Select(rp => rp.IdPermiso).Cast<int>().ToList();
+
+            var model = new EditRoleViewModel
+            {
+                IdRol = role.IdRol,
+                NombreRol = role.NombreRol,
+                DescripcionRol = role.DescripcionRol,
+                EstadoRol = role.EstadoRol,
+                AllPermissions = allPermissions,
+                SelectedPermissions = selectedPermissions
+            };
+
+            return View(model);
+        }
+
         // GET: Roles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
