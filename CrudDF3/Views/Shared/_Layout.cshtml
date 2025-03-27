@@ -10,17 +10,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CrudDF</title>
+    <title>@ViewData["Title"] - Traveler's Home</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 
 <body>
 
-    <header class="Layout">
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="Layout" >
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3" style="background-color:#55A9E0; font-weight:bolder;">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">CrudDF</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Traveler's Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -79,10 +79,10 @@
                         <!-- MENÚ CUANDO EL USUARIO NO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
+                                <a class="nav-link text-dark" style="border:1px solid #dee2e6; border-radius:10px; " asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Registrar">Registrarse</a>
+                                <a class="nav-link text-dark" style="border:1px solid #dee2e6; border-radius:10px; " asp-controller="Account" asp-action="Registrar">Registrarse</a>
                             </li>
                         </ul>
                     }

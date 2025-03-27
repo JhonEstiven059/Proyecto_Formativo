@@ -11,7 +11,7 @@ pone esto mas bonito y organizado, donde alla espacio en el nav y que el login e
 }
 
 .layout .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem blue, 0 0 0 0.25rem #258cfb;
 }
 
 .layout html {
@@ -39,95 +39,8 @@ pone esto mas bonito y organizado, donde alla espacio en el nav y que el login e
     color: blue;
 }
 
-ChatGPT dijo:
-Aquí tienes el código mejor organizado, con un diseño más limpio y con el login alineado completamente a la derecha:
-
-Styled Layout
-
-Responde en el chat en su lugar
-Este código mejora la estructura del nav, añade espacios entre elementos y alinea el login completamente a la derecha. También se ha optimizado la organización del CSS para mayor claridad. ¿Quieres algún otro ajuste?
 
 
-
-
-
-
-
-
-
-
-
-
-Analiza
-
-ChatGPT puede cometer errores. Comprueba la información importante.
-?
-
-
-Styled Layout
-
-
-
-
-
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
 html {
     font-size: 14px;
     margin: 0;
@@ -151,7 +64,7 @@ body {
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem blue, 0 0 0 0.25rem #258cfb;
 }
 
 /* Estilizando los placeholders */
@@ -172,7 +85,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #f8f9fa; /* Ajusta el color de fondo según tu diseño */
+    background-color: #258cfb; /* Ajusta el color de fondo según tu diseño */
 }
 
 .navbar-nav {
@@ -184,4 +97,3 @@ body {
     margin-left: auto; /* Empuja el login a la derecha */
 }
 
-ChatGPT dice: Este código mejora la estructura del `nav`, añade espacios entre elementos y alinea el `login` completamente a la derecha. También se ha optimizado la organización del CSS para mayor claridad. ¿Quieres algún otro ajuste?
