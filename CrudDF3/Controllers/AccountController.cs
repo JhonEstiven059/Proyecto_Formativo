@@ -31,28 +31,39 @@ namespace CrudDF3.Controllers
             if (ModelState.IsValid)
             {
                 var user = _context.Usuarios
-                    .Include(u => u.IdRolNavigation) // INCLUYE LA RELACIÓN CON LA TABLA ROLES
-                    .FirstOrDefault(u => u.CorreoUsuario == model.CorreoUsuario
-                                      && u.ContraseñaUsuario == model.ContraseñaUsuario);
+                    .Include(u => u.IdRolNavigation) // INCLUYE LA RELACIÓN CON ROLES
+                    .FirstOrDefault(u => u.CorreoUsuario == model.CorreoUsuario);
 
-                if (user != null)
+                if (user == null)
                 {
-                    // GUARDAR DATOS EN LA SESIÓN
-                    HttpContext.Session.SetString("idUsuario", user.IdUsuario.ToString());
-                    HttpContext.Session.SetString("nombreUsuario", user.NombreUsuario);
-                    HttpContext.Session.SetString("idRol", user.IdRol.ToString());
-                    HttpContext.Session.SetString("nombreRol", user.IdRolNavigation.NombreRol); // OBTIENE EL NOMBRE DEL ROL
+                    ViewBag.ErrorMessage = "El correo no está registrado.";
+                    return View(model);
+                }
 
-                    return RedirectToAction("Index", "Home"); // REDIRIGIR A LA PÁGINA PRINCIPAL
-                }
-                else
+                // COMPARAR CONTRASEÑA (SI USAS HASH, DEBES VERIFICARLO CON BCrypt O Similar)
+                if (user.ContraseñaUsuario != model.ContraseñaUsuario)
                 {
-                    ViewBag.ErrorMessage = "Usuario o contraseña incorrectos";
+                    ViewBag.ErrorMessage = "Usuario o contraseña incorrectos.";
+                    return View(model);
                 }
+
+                // GUARDAR DATOS EN SESIÓN
+                HttpContext.Session.SetString("idUsuario", user.IdUsuario.ToString());
+                HttpContext.Session.SetString("nombreUsuario", user.NombreUsuario);
+                HttpContext.Session.SetString("idRol", user.IdRol.ToString());
+
+                // VERIFICAR QUE EL ROL NO SEA NULO
+                if (user.IdRolNavigation != null)
+                {
+                    HttpContext.Session.SetString("nombreRol", user.IdRolNavigation.NombreRol);
+                }
+
+                return RedirectToAction("Index", "Home"); // REDIRIGIR A HOME
             }
 
             return View(model);
         }
+
 
         [HttpGet]
         public IActionResult Registrar()

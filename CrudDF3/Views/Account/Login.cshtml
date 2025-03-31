@@ -25,6 +25,14 @@
         <div class="content-form" style="width: 350px; margin-top:15px;">
             <h2 class="Title-Content text-center">Iniciar Sesión</h2>
 
+            <!-- MOSTRAR MENSAJE DE ERROR -->
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger text-center" role="alert">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
             <form method="post" asp-action="Login" asp-controller="Account">
                 <div class="mb-3">
                     <label asp-for="CorreoUsuario" class="form-label">Correo Electrónico</label>
