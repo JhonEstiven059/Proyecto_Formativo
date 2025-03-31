@@ -1,18 +1,20 @@
 ﻿@model CrudDF3.Models.EditRoleViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Rol";
 }
 
-<h1>Edit</h1>
+<h1>Editar Rol</h1>
 
-<h4>Role</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="card mt-3">
+    <div class="card-header bg-warning text-dark">
+        <strong>Modificar Información del Rol</strong>
+    </div>
+    <div class="card-body">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
             <input type="hidden" asp-for="IdRol" />
+
 
             <!-- Campo NombreRol -->
             <div class="form-group">
@@ -54,13 +56,10 @@
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

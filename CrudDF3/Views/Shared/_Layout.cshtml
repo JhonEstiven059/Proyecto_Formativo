@@ -1,7 +1,8 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 ﻿@{
-    // Accede al valor de idRol desde la sesión
-    var idRol = Context.Session.GetString("idRol");
+
+    var nombreRol = Context.Session.GetString("nombreRol");
+
 }
 
 <!DOCTYPE html>
@@ -30,7 +31,9 @@
                     {
                         <!-- MENÚ CUANDO EL USUARIO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav me-auto">
-                            @if (idRol != null && idRol == "1") // Comprobamos si idRol es "1"
+
+                            @if (nombreRol != null && nombreRol == "Administrador") // Comprobamos si idRol es "1"
+
                             {
                                 <!-- Menús visibles solo si el rol es "1" -->
                                 <li class="nav-item">
@@ -58,7 +61,9 @@
                                     <a class="nav-link text-dark" asp-controller="Permisoes" asp-action="Index">Permisos</a>
                                 </li>
                             }
-                            else if (idRol != null && idRol == "2") // Si el idRol es "2" (por ejemplo, rol de cliente)
+
+                            else if (nombreRol != null && nombreRol == "Cliente") // Si el idRol es "2" (por ejemplo, rol de cliente)
+
                             {
                                 <!-- Menú específico para el rol "2" -->
                                 <li class="nav-item">
@@ -109,5 +114,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>
+
 </html>
+
 

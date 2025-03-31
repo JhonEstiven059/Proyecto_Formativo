@@ -5,7 +5,7 @@ namespace CrudDF3.Models;
 
 public partial class Role
 {
-    public int IdRol { get; set; }
+    public int? IdRol { get; set; }
 
     public string? NombreRol { get; set; }
 

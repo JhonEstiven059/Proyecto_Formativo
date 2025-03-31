@@ -256,10 +256,13 @@ public partial class CrudDf3Context : DbContext
                 .HasMaxLength(15)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
+            entity.HasOne(d => d.IdRolNavigation)
+                .WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdRol)
+                .OnDelete(DeleteBehavior.SetNull) // PERMITE QUE IdRol SE PONGA EN NULL CUANDO SE ELIMINE UN ROL
                 .HasConstraintName("FK__Usuarios__IdRol__4D94879B");
         });
+
 
         OnModelCreatingPartial(modelBuilder);
     }
