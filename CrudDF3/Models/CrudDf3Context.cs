@@ -37,12 +37,38 @@ public partial class CrudDf3Context : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
+    public virtual DbSet<PaqueteServicio> PaqueteServicios { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=LAPTOP-NHQ1PKN2\\SQLEXPRESS01; database=CrudDF3; integrated security=true; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("server=(localdb)\\MiInstanciaLocalDB; database=hotel_proyecto; integrated security=true; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<PaqueteServicio>(entity =>
+        {
+            entity.HasKey(e => e.IdPaqueteServicio).HasName("PK__PaqueteServicio");
+
+            entity.HasOne(d => d.IdPaqueteNavigation)
+                .WithMany(p => p.PaqueteServicios)
+                .HasForeignKey(d => d.IdPaquete)
+                .HasConstraintName("FK_PaqueteServicio_PaquetesTuristico");
+
+            entity.HasOne(d => d.IdServicioNavigation)
+                .WithMany(p => p.PaqueteServicios)
+                .HasForeignKey(d => d.IdServicio)
+                .HasConstraintName("FK_PaqueteServicio_Servicios");
+        });
+
+        modelBuilder.Entity<Habitacione>(entity =>
+        {
+            entity.HasOne(d => d.Paquete)
+                .WithMany(p => p.Habitaciones)
+                .HasForeignKey(d => d.IdPaquete)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("FK_Habitacion_PaqueteTuristico");
+        });
+
         modelBuilder.Entity<Habitacione>(entity =>
         {
             entity.HasKey(e => e.IdHabitacion).HasName("PK__Habitaci__8BBBF901646793AD");

@@ -1,12 +1,12 @@
 ﻿@model CrudDF3.Models.PaquetesTuristico
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
 }
 
-<h1>Create</h1>
+<h1>Crear</h1>
 
-<h4>PaquetesTuristico</h4>
+<h4>Paquete Turístico</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -52,17 +52,42 @@
                 <input asp-for="TipoViajePaquete" class="form-control" />
                 <span asp-validation-for="TipoViajePaquete" class="text-danger"></span>
             </div>
+
+            <!-- Selección de Servicios (Multiselección) -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label for="SelectedServicios">Servicios</label>
+                <select asp-for="PaqueteServicios" class="form-control" multiple="multiple">
+                    @foreach (var servicio in ViewData["Servicios"] as SelectList)
+                    {
+                        <option value="@servicio.Value">@servicio.Text</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Selección de Habitaciones (Multiselección) -->
+            <div class="form-group">
+                <label for="SelectedHabitaciones">Habitaciones</label>
+                <select asp-for="Habitaciones" class="form-control" multiple="multiple">
+                    @foreach (var habitacion in ViewData["Habitaciones"] as SelectList)
+                    {
+                        <option value="@habitacion.Value">@habitacion.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver al listado</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -30,7 +30,7 @@ namespace CrudDF3.Controllers
         public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {    
                 var user = _context.Usuarios
                     .FirstOrDefault(u => u.CorreoUsuario == model.CorreoUsuario && u.ContraseñaUsuario == model.ContraseñaUsuario);
 

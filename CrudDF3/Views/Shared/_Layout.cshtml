@@ -26,7 +26,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    @if (HttpContextAccessor.HttpContext.Session.GetString("idUsuario") != null)
+                    @if (Context.Session.GetString("idUsuario") != null)
                     {
                         <!-- MENÚ CUANDO EL USUARIO HA INICIADO SESIÓN -->
                         <ul class="navbar-nav me-auto">
